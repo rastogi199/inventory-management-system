@@ -1,8 +1,6 @@
 # 🚀 Inventory Management System
 
-A full-stack Inventory Management System built using **FastAPI**, **React (Vite)**, **PostgreSQL**, and **SQLAlchemy**.
-
-The application allows administrators to manage products, customers, orders, and inventory stock through a modern dashboard interface.
+A full-stack Inventory Management System built using **FastAPI**, **React (Vite)**, **PostgreSQL**, and **SQLAlchemy**. The application provides a centralized platform to manage products, customers, orders, and inventory stock with a clean and responsive admin dashboard.
 
 ---
 
@@ -16,7 +14,7 @@ https://inventory-management-system-azure-seven.vercel.app
 
 https://inventory-backend-le5h.onrender.com
 
-### Swagger Documentation
+### API Documentation (Swagger UI)
 
 https://inventory-backend-le5h.onrender.com/docs
 
@@ -26,7 +24,7 @@ https://github.com/rastogi199/inventory-management-system
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -39,7 +37,7 @@ https://github.com/rastogi199/inventory-management-system
 ### Backend
 
 * FastAPI
-* SQLAlchemy
+* SQLAlchemy ORM
 * Pydantic
 * Uvicorn
 
@@ -47,11 +45,12 @@ https://github.com/rastogi199/inventory-management-system
 
 * PostgreSQL (Render)
 
-### Deployment
+### DevOps & Deployment
 
-* Frontend: Vercel
-* Backend: Render
-* Database: Render PostgreSQL
+* Docker
+* Docker Compose
+* Render
+* Vercel
 
 ---
 
@@ -59,41 +58,40 @@ https://github.com/rastogi199/inventory-management-system
 
 ### Dashboard
 
-* Total Products
-* Total Customers
-* Total Orders
-* Low Stock Products
+* View total products
+* View total customers
+* View total orders
+* Monitor low-stock products
 
 ### Product Management
 
-* Add Product
-* View Products
-* Delete Product
-* SKU Validation
-* Stock Quantity Tracking
+* Add new products
+* View product inventory
+* Delete products
+* SKU validation
+* Stock quantity tracking
 
 ### Customer Management
 
-* Add Customer
-* View Customers
-* Delete Customer
-* Email Validation
+* Add customers
+* View customer records
+* Delete customers
+* Email validation
 
 ### Order Management
 
-* Create Orders
-* Delete Orders
-* Customer Selection
-* Product Selection
-* Automatic Total Calculation
-* Stock Deduction on Order Creation
+* Create orders
+* Delete orders
+* Select customer and product
+* Automatic total amount calculation
+* Automatic stock deduction after order creation
 
 ### User Experience
 
-* Responsive Admin Dashboard
-* Sidebar Navigation
-* Loading Indicators
-* Real-time Data Updates
+* Responsive admin dashboard
+* Sidebar navigation
+* Loading indicators
+* Real-time data updates
 
 ---
 
@@ -104,15 +102,25 @@ inventory-system/
 │
 ├── backend/
 │   ├── app/
-│   ├── requirements.txt
-│   └── Dockerfile
+│   │   ├── crud.py
+│   │   ├── database.py
+│   │   ├── dependencies.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   └── schemas.py
+│   │
+│   ├── Dockerfile
+│   └── requirements.txt
 │
 ├── frontend/
-│   ├── src/
 │   ├── public/
-│   └── package.json
+│   ├── src/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── vite.config.js
 │
 ├── docker-compose.yml
+├── .gitignore
 └── README.md
 ```
 
@@ -126,8 +134,6 @@ inventory-system/
 git clone https://github.com/rastogi199/inventory-management-system.git
 cd inventory-management-system
 ```
-
----
 
 ### Backend Setup
 
@@ -143,19 +149,17 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend runs on:
+Backend URL:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-Swagger:
+Swagger Documentation:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
-
----
 
 ### Frontend Setup
 
@@ -167,7 +171,7 @@ npm install
 npm run dev
 ```
 
-Frontend runs on:
+Frontend URL:
 
 ```text
 http://localhost:5173
@@ -191,7 +195,54 @@ VITE_API_URL=https://inventory-backend-le5h.onrender.com
 
 ---
 
-## 📸 Application Modules
+## 🐳 Docker Setup
+
+### Build and Run with Docker Compose
+
+```bash
+docker compose up --build
+```
+
+### Backend Docker Build
+
+```bash
+docker build -t inventory-backend ./backend
+```
+
+### Frontend Docker Build
+
+```bash
+docker build -t inventory-frontend ./frontend
+```
+
+---
+
+## 🚀 Deployment
+
+### Backend Deployment
+
+* Render Web Service
+* Docker Container
+* PostgreSQL Database (Render)
+
+### Frontend Deployment
+
+* Vercel
+
+### Production URLs
+
+Frontend:
+https://inventory-management-system-azure-seven.vercel.app
+
+Backend:
+https://inventory-backend-le5h.onrender.com
+
+Swagger:
+https://inventory-backend-le5h.onrender.com/docs
+
+---
+
+## 📸 Core Modules
 
 ### Dashboard
 
@@ -199,7 +250,7 @@ Displays inventory analytics and key business metrics.
 
 ### Products
 
-Manage inventory products with SKU validation.
+Manage inventory products with SKU validation and stock tracking.
 
 ### Customers
 
@@ -207,20 +258,7 @@ Manage customer records with email validation.
 
 ### Orders
 
-Create and manage orders with automatic stock updates.
-
----
-
-## 🚀 Deployment
-
-### Backend
-
-* Render Web Service
-* PostgreSQL Database on Render
-
-### Frontend
-
-* Vercel Deployment
+Create and manage orders with automatic stock updates and total calculations.
 
 ---
 
@@ -235,4 +273,4 @@ https://github.com/rastogi199
 
 ## 📄 License
 
-This project is created for educational and technical assessment purposes.
+This project was developed for educational purposes and technical assessment evaluation.
