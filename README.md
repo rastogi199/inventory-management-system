@@ -8,7 +8,7 @@ A full-stack Inventory Management System built using **FastAPI**, **React (Vite)
 
 ### Frontend (Vercel)
 
-https://inventory-management-system-azure-seven.vercel.app
+https://inventory-management-system-project-seven.vercel.app/
 
 ### Backend API (Render)
 
