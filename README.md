@@ -1,117 +1,116 @@
-# Inventory Management System
+# 🚀 Inventory Management System
 
-A full-stack Inventory Management System built using FastAPI, SQLAlchemy, React, Axios, Bootstrap, and SQLite.
+A full-stack Inventory Management System built using **FastAPI**, **React (Vite)**, **PostgreSQL**, and **SQLAlchemy**.
 
-This application allows administrators to manage products, customers, and orders while automatically tracking inventory stock levels.
-
----
-
-# Features
-
-## Dashboard
-
-- Total Products Count
-- Total Customers Count
-- Total Orders Count
-- Low Stock Products Count
-- Dynamic Dashboard Statistics
+The application allows administrators to manage products, customers, orders, and inventory stock through a modern dashboard interface.
 
 ---
 
-## Product Management
+## 🌐 Live Demo
 
-- Create Product
-- View Product List
-- Update Product
-- Delete Product
-- SKU Validation (Unique SKU)
-- Quantity Validation
-- Price Management
+### Frontend (Vercel)
 
----
+https://inventory-management-system-azure-seven.vercel.app
 
-## Customer Management
+### Backend API (Render)
 
-- Create Customer
-- View Customer List
-- Delete Customer
-- Email Validation
-- Duplicate Email Prevention
+https://inventory-backend-le5h.onrender.com
+
+### Swagger Documentation
+
+https://inventory-backend-le5h.onrender.com/docs
+
+### GitHub Repository
+
+https://github.com/rastogi199/inventory-management-system
 
 ---
 
-## Order Management
+## 🛠 Tech Stack
 
-- Create Order
-- View Orders
-- Delete Order
-- Customer Selection
-- Product Selection
-- Quantity Selection
-- Automatic Total Amount Calculation
+### Frontend
 
----
+* React.js
+* Vite
+* Bootstrap 5
+* Axios
+* React Router DOM
 
-## Inventory Features
+### Backend
 
-- Automatic Stock Deduction
-- Insufficient Stock Validation
-- Low Stock Monitoring
-- Real-Time Dashboard Updates
+* FastAPI
+* SQLAlchemy
+* Pydantic
+* Uvicorn
 
----
+### Database
 
-# Tech Stack
+* PostgreSQL (Render)
 
-## Backend
+### Deployment
 
-- FastAPI
-- SQLAlchemy
-- Pydantic
-- SQLite
-
-## Frontend
-
-- React
-- Axios
-- React Router DOM
-- Bootstrap 5
-
-## Tools
-
-- Git
-- GitHub
-- Docker
+* Frontend: Vercel
+* Backend: Render
+* Database: Render PostgreSQL
 
 ---
 
-# Project Structure
+## ✨ Features
+
+### Dashboard
+
+* Total Products
+* Total Customers
+* Total Orders
+* Low Stock Products
+
+### Product Management
+
+* Add Product
+* View Products
+* Delete Product
+* SKU Validation
+* Stock Quantity Tracking
+
+### Customer Management
+
+* Add Customer
+* View Customers
+* Delete Customer
+* Email Validation
+
+### Order Management
+
+* Create Orders
+* Delete Orders
+* Customer Selection
+* Product Selection
+* Automatic Total Calculation
+* Stock Deduction on Order Creation
+
+### User Experience
+
+* Responsive Admin Dashboard
+* Sidebar Navigation
+* Loading Indicators
+* Real-time Data Updates
+
+---
+
+## 📂 Project Structure
 
 ```text
 inventory-system/
 │
 ├── backend/
 │   ├── app/
-│   │   ├── crud.py
-│   │   ├── database.py
-│   │   ├── dependencies.py
-│   │   ├── main.py
-│   │   ├── models.py
-│   │   └── schemas.py
-│   │
 │   ├── requirements.txt
 │   └── Dockerfile
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
-│   ├── package.json
-│   └── Dockerfile
+│   ├── public/
+│   └── package.json
 │
 ├── docker-compose.yml
 └── README.md
@@ -119,91 +118,38 @@ inventory-system/
 
 ---
 
-# API Endpoints
+## ⚙️ Local Setup
 
-## Products
-
-| Method | Endpoint |
-|----------|----------|
-| POST | /products |
-| GET | /products |
-| GET | /products/{id} |
-| PUT | /products/{id} |
-| DELETE | /products/{id} |
-
----
-
-## Customers
-
-| Method | Endpoint |
-|----------|----------|
-| POST | /customers |
-| GET | /customers |
-| GET | /customers/{id} |
-| DELETE | /customers/{id} |
-
----
-
-## Orders
-
-| Method | Endpoint |
-|----------|----------|
-| POST | /orders |
-| GET | /orders |
-| GET | /orders/{id} |
-| DELETE | /orders/{id} |
-
----
-
-## Dashboard
-
-| Method | Endpoint |
-|----------|----------|
-| GET | /dashboard |
-
----
-
-# Backend Setup
-
-## Create Virtual Environment
+### Clone Repository
 
 ```bash
+git clone https://github.com/rastogi199/inventory-management-system.git
+cd inventory-management-system
+```
+
+---
+
+### Backend Setup
+
+```bash
+cd backend
+
 python -m venv venv
-```
 
-## Activate Environment
-
-### Windows
-
-```bash
 venv\Scripts\activate
-```
 
-### Linux/Mac
-
-```bash
-source venv/bin/activate
-```
-
-## Install Dependencies
-
-```bash
 pip install -r requirements.txt
-```
 
-## Run Backend
-
-```bash
 uvicorn app.main:app --reload
 ```
 
-Backend URL:
+Backend runs on:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-Swagger Documentation:
+Swagger:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -211,21 +157,17 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# Frontend Setup
-
-## Install Dependencies
+### Frontend Setup
 
 ```bash
+cd frontend
+
 npm install
-```
 
-## Run Frontend
-
-```bash
 npm run dev
 ```
 
-Frontend URL:
+Frontend runs on:
 
 ```text
 http://localhost:5173
@@ -233,90 +175,64 @@ http://localhost:5173
 
 ---
 
-# Docker Setup
+## 🔐 Environment Variables
 
-## Build Containers
+### Backend
 
-```bash
-docker compose build
+```env
+DATABASE_URL=postgresql://username:password@host:5432/database
 ```
 
-## Run Containers
+### Frontend
 
-```bash
-docker compose up
-```
-
-## Stop Containers
-
-```bash
-docker compose down
+```env
+VITE_API_URL=https://inventory-backend-le5h.onrender.com
 ```
 
 ---
 
-# Business Logic
+## 📸 Application Modules
 
-## Product Validation
+### Dashboard
 
-- SKU must be unique
-- Quantity cannot be negative
+Displays inventory analytics and key business metrics.
 
-## Customer Validation
+### Products
 
-- Email format validation
-- Duplicate emails not allowed
+Manage inventory products with SKU validation.
 
-## Order Validation
+### Customers
 
-- Customer must exist
-- Product must exist
-- Quantity must be greater than zero
-- Stock must be available
+Manage customer records with email validation.
 
-## Inventory Update
+### Orders
 
-When an order is created:
-
-1. Product stock is checked
-2. Total amount is calculated
-3. Product quantity is reduced
-4. Order is stored in database
+Create and manage orders with automatic stock updates.
 
 ---
 
-# Future Improvements
+## 🚀 Deployment
 
-- PostgreSQL Integration
-- Authentication & Authorization
-- JWT Security
-- Order Update Feature
-- Product Search & Filtering
-- Pagination
-- Deployment on Render/Railway/AWS
-- Dockerized PostgreSQL
+### Backend
+
+* Render Web Service
+* PostgreSQL Database on Render
+
+### Frontend
+
+* Vercel Deployment
 
 ---
 
-# Author
+## 👨‍💻 Author
 
-Chirag Rastogi
+**Chirag Rastogi**
 
 GitHub:
 https://github.com/rastogi199
 
 ---
 
-# Project Status
+## 📄 License
 
-Completed
-
-- Backend API Development
-- Frontend Development
-- CRUD Operations
-- Dashboard Integration
-- Order Processing
-- Inventory Tracking
-- Validations
-- Docker Configuration
-- GitHub Integration
+This project is created for educational and technical assessment purposes.
