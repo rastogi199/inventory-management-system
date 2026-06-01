@@ -18,9 +18,14 @@ https://inventory-backend-le5h.onrender.com
 
 https://inventory-backend-le5h.onrender.com/docs
 
+### Docker Hub Image
+
+https://hub.docker.com/r/chiragcsr/inventory-backend
+
 ### GitHub Repository
 
 https://github.com/rastogi199/inventory-management-system
+
 
 ---
 
