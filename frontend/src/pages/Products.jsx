@@ -269,7 +269,7 @@ const fetchProducts = async () => {
 
       <tr key={product.id}>
 
-        <td>{product.id}</td>
+        <td>{index+1}</td>
 
         <td>{product.name}</td>
 
