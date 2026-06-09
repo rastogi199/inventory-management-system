@@ -212,7 +212,7 @@ function Dashboard() {
       </div>
 
       {/* Recent Activity Section */}
-      <div className="mt-5">
+      {/* <div className="mt-5">
         <div className="row">
           <div className="col-md-6">
             <div
@@ -301,7 +301,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
