@@ -1,343 +1,3 @@
-// import { useEffect, useState } from "react";
-// import api from "../services/api";
-
-// function Customers() {
-
-//   const [customers, setCustomers] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   const [editingId, setEditingId] = useState(null);
-
-//   const [formData, setFormData] = useState({
-//     full_name: "",
-//     email: "",
-//     phone: "",
-//   });
-
-//   useEffect(() => {
-//     fetchCustomers();
-//   }, []);
-
-// const fetchCustomers = async () => {
-//   try {
-
-//     setLoading(true);
-
-//     const response = await api.get("/customers");
-
-//     setCustomers(response.data);
-
-//   } catch (error) {
-
-//     console.log(error);
-
-//   } finally {
-
-//     setLoading(false);
-
-//   }
-// };
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const resetForm = () => {
-//     setEditingId(null);
-
-//     setFormData({
-//       full_name: "",
-//       email: "",
-//       phone: "",
-//     });
-//   };
-
-//   const addCustomer = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       await api.post("/customers", formData);
-
-//       resetForm();
-
-//       fetchCustomers();
-
-//     } catch (error) {
-//       alert(
-//         error.response?.data?.detail || "Error"
-//       );
-//     }
-//   };
-
-//   const editCustomer = (customer) => {
-
-//     setEditingId(customer.id);
-
-//     setFormData({
-//       full_name: customer.full_name,
-//       email: customer.email,
-//       phone: customer.phone,
-//     });
-//   };
-
-//   const updateCustomer = async (e) => {
-//     e.preventDefault();
-
-//     try {
-
-//       await api.put(
-//         `/customers/${editingId}`,
-//         formData
-//       );
-
-//       resetForm();
-
-//       fetchCustomers();
-
-//     } catch (error) {
-//       alert(
-//         error.response?.data?.detail || "Error"
-//       );
-//     }
-//   };
-
-//   const deleteCustomer = async (id) => {
-
-//     const confirmDelete = window.confirm(
-//       "Delete this customer?"
-//     );
-
-//     if (!confirmDelete) return;
-
-//     try {
-
-//       await api.delete(
-//         `/customers/${id}`
-//       );
-
-//       fetchCustomers();
-
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   return (
-//     <div>
-
-//       <h2 className="mb-4">
-//         Customers
-//       </h2>
-
-//       {/* Form */}
-
-//       <div className="card shadow-sm mb-4">
-
-//         <div className="card-body">
-
-//           <h5 className="mb-3">
-//             {
-//               editingId
-//                 ? "Update Customer"
-//                 : "Add Customer"
-//             }
-//           </h5>
-
-//           <form
-//             onSubmit={
-//               editingId
-//                 ? updateCustomer
-//                 : addCustomer
-//             }
-//           >
-
-//             <div className="row g-3">
-
-//               <div className="col-md-4">
-//                 <input
-//                   type="text"
-//                   className="form-control"
-//                   placeholder="Full Name"
-//                   name="full_name"
-//                   value={formData.full_name}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-
-//               <div className="col-md-4">
-//                 <input
-//                   type="email"
-//                   className="form-control"
-//                   placeholder="Email"
-//                   name="email"
-//                   value={formData.email}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-
-//               <div className="col-md-2">
-//                 <input
-//                   type="text"
-//                   className="form-control"
-//                   placeholder="Phone"
-//                   name="phone"
-//                   value={formData.phone}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-
-//               <div className="col-md-2 d-flex gap-2">
-
-//                 <button
-//                   type="submit"
-//                   className={
-//                     editingId
-//                       ? "btn btn-warning flex-fill"
-//                       : "btn btn-primary flex-fill"
-//                   }
-//                 >
-//                   {
-//                     editingId
-//                       ? "Update"
-//                       : "Add"
-//                   }
-//                 </button>
-
-//                 {
-//                   editingId && (
-//                     <button
-//                       type="button"
-//                       className="btn btn-secondary"
-//                       onClick={resetForm}
-//                     >
-//                       Cancel
-//                     </button>
-//                   )
-//                 }
-
-//               </div>
-
-//             </div>
-
-//           </form>
-
-//         </div>
-
-//       </div>
-
-//       {/* Table */}
-
-//       <div className="card shadow-sm">
-
-//         <div className="card-body">
-
-//           <h5>
-//             Customer List
-//           </h5>
-
-//           <table className="table table-hover">
-
-//             <thead className="table-dark">
-
-//               <tr>
-//                 <th>ID</th>
-//                 <th>Name</th>
-//                 <th>Email</th>
-//                 <th>Phone</th>
-//                 <th>Action</th>
-//               </tr>
-
-//             </thead>
-
-// <tbody>
-
-//   {loading ? (
-
-//     <tr>
-//       <td
-//         colSpan="5"
-//         className="text-center py-5"
-//       >
-//         <div
-//           className="spinner-border text-primary"
-//           role="status"
-//         >
-//         </div>
-//       </td>
-//     </tr>
-
-//   ) : customers.length > 0 ? (
-
-//     customers.map((customer) => (
-
-//       <tr key={customer.id}>
-
-//         <td>{customer.id}</td>
-
-//         <td>{customer.full_name}</td>
-
-//         <td>{customer.email}</td>
-
-//         <td>{customer.phone}</td>
-
-//         <td>
-
-//           <button
-//             className="btn btn-warning btn-sm me-2"
-//             onClick={() =>
-//               editCustomer(customer)
-//             }
-//           >
-//             Edit
-//           </button>
-
-//           <button
-//             className="btn btn-danger btn-sm"
-//             onClick={() =>
-//               deleteCustomer(customer.id)
-//             }
-//           >
-//             Delete
-//           </button>
-
-//         </td>
-
-//       </tr>
-
-//     ))
-
-//   ) : (
-
-//     <tr>
-//       <td
-//         colSpan="5"
-//         className="text-center"
-//       >
-//         No Customers Found
-//       </td>
-//     </tr>
-
-//   )}
-
-// </tbody>
-
-//           </table>
-
-//         </div>
-
-//       </div>
-
-//     </div>
-//   );
-// }
-
-// export default Customers;
 
 import { useEffect, useState } from "react";
 import api from "../services/api";
@@ -447,74 +107,32 @@ function Customers() {
         <p style={{ color: "#666", marginTop: "5px" }}>Manage your customer database</p>
       </div>
 
-      {/* Action Bar - Button Left & Search Right */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "20px",
-        gap: "20px"
-      }}>
-        {/* Add Customer Button - Left Side */}
-        {!showForm && (
-          <button
-            onClick={() => setShowForm(true)}
-            style={{
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              border: "none",
-              color: "white",
-              padding: "12px 24px",
-              borderRadius: "12px",
-              fontWeight: "500",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              whiteSpace: "nowrap"
-            }}
-          >
-            <FaUserPlus /> Add New Customer
-          </button>
-        )}
+      {/* Add Customer Button */}
+      {!showForm && (
+        <button
+          onClick={() => setShowForm(true)}
+          style={{
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            border: "none",
+            color: "white",
+            padding: "12px 24px",
+            borderRadius: "12px",
+            fontWeight: "500",
+            marginBottom: "20px",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            transition: "transform 0.3s"
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+        >
+          <FaUserPlus /> Add New Customer
+        </button>
+      )}
 
-        {/* Search Bar - Right Side */}
-        <div style={{
-          background: "white",
-          borderRadius: "12px",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-          flex: 1,
-          maxWidth: "400px"
-        }}>
-          <div style={{ position: "relative" }}>
-            <FaSearch style={{
-              position: "absolute",
-              left: "15px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "#999"
-            }} />
-            <input
-              type="text"
-              placeholder="Search customers by name, email or phone..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "12px 15px 12px 45px",
-                border: "1px solid #e2e8f0",
-                borderRadius: "12px",
-                fontSize: "14px",
-                outline: "none",
-                transition: "all 0.3s"
-              }}
-              onFocus={(e) => e.target.style.borderColor = "#667eea"}
-              onBlur={(e) => e.target.style.borderColor = "#e2e8f0"}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Form Modal/Card - Same design as Products page */}
+      {/* Form Modal/Card */}
       {showForm && (
         <div style={{
           background: "white",
@@ -531,52 +149,86 @@ function Customers() {
             right: "20px",
             cursor: "pointer",
             color: "#666",
-            fontSize: "20px"
-          }} onClick={() => { setShowForm(false); resetForm(); }}>
+            fontSize: "20px",
+            transition: "color 0.3s"
+          }} 
+          onClick={() => { setShowForm(false); resetForm(); }}
+          onMouseEnter={(e) => e.currentTarget.style.color = "#f56565"}
+          onMouseLeave={(e) => e.currentTarget.style.color = "#666"}>
             <FaTimes />
           </div>
           
           <h5 style={{ marginBottom: "20px", color: "#333", fontWeight: "600" }}>
-            {editingId ? "✏️ Update Customer" : "➕ Add New Customer"}
+            {editingId ? "✏️ Update Customer" : "👤 Add New Customer"}
           </h5>
 
           <form onSubmit={editingId ? updateCustomer : addCustomer}>
             <div className="row g-3">
               <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Full Name"
-                  name="full_name"
-                  value={formData.full_name}
-                  onChange={handleChange}
-                  required
-                  style={{ borderRadius: "10px", padding: "10px" }}
-                />
+                <div style={{ position: "relative" }}>
+                  <FaUser style={{
+                    position: "absolute",
+                    left: "12px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    color: "#999",
+                    fontSize: "14px"
+                  }} />
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Full Name"
+                    name="full_name"
+                    value={formData.full_name}
+                    onChange={handleChange}
+                    required
+                    style={{ borderRadius: "10px", padding: "10px 10px 10px 35px" }}
+                  />
+                </div>
               </div>
               <div className="col-md-4">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email Address"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  style={{ borderRadius: "10px", padding: "10px" }}
-                />
+                <div style={{ position: "relative" }}>
+                  <FaEnvelope style={{
+                    position: "absolute",
+                    left: "12px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    color: "#999",
+                    fontSize: "14px"
+                  }} />
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Email Address"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    style={{ borderRadius: "10px", padding: "10px 10px 10px 35px" }}
+                  />
+                </div>
               </div>
               <div className="col-md-2">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Phone Number"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  style={{ borderRadius: "10px", padding: "10px" }}
-                />
+                <div style={{ position: "relative" }}>
+                  <FaPhone style={{
+                    position: "absolute",
+                    left: "12px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    color: "#999",
+                    fontSize: "14px"
+                  }} />
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Phone Number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    style={{ borderRadius: "10px", padding: "10px 10px 10px 35px" }}
+                  />
+                </div>
               </div>
               <div className="col-md-2 d-flex gap-2">
                 <button
@@ -589,8 +241,11 @@ function Customers() {
                     borderRadius: "10px",
                     fontWeight: "500",
                     cursor: "pointer",
-                    flex: 1
+                    flex: 1,
+                    transition: "transform 0.3s"
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.02)"}
+                  onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
                 >
                   {editingId ? "Update Customer" : "Add Customer"}
                 </button>
@@ -603,8 +258,11 @@ function Customers() {
                     color: "#666",
                     padding: "10px 20px",
                     borderRadius: "10px",
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    transition: "background 0.3s"
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = "#cbd5e0"}
+                  onMouseLeave={(e) => e.currentTarget.style.background = "#e2e8f0"}
                 >
                   Cancel
                 </button>
@@ -613,6 +271,42 @@ function Customers() {
           </form>
         </div>
       )}
+
+      {/* Search Bar */}
+      <div style={{
+        background: "white",
+        borderRadius: "20px",
+        padding: "20px",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+        marginBottom: "20px"
+      }}>
+        <div style={{ position: "relative" }}>
+          <FaSearch style={{
+            position: "absolute",
+            left: "15px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            color: "#999"
+          }} />
+          <input
+            type="text"
+            placeholder="Search customers by name, email or phone..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "12px 15px 12px 45px",
+              border: "1px solid #e2e8f0",
+              borderRadius: "12px",
+              fontSize: "14px",
+              outline: "none",
+              transition: "all 0.3s"
+            }}
+            onFocus={(e) => e.target.style.borderColor = "#667eea"}
+            onBlur={(e) => e.target.style.borderColor = "#e2e8f0"}
+          />
+        </div>
+      </div>
 
       {/* Customers Table */}
       <div style={{
